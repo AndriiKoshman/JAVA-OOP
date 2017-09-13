@@ -47,5 +47,19 @@ public class Main {
         System.out.println(groupOne);
         System.out.println();
 
-        //remove student from 5th place
-        groupO
+	 //remove student from 5th place
+        groupOne.removeStudent(student5);
+
+        //trying remove student from that place again
+        groupOne.removeStudent(student5);
+
+        //trying remove student from not existing place
+        groupOne.removeStudent(student11);
+        System.out.println(student5);
+        System.out.println(groupOne);
+        System.out.println();
+
+        //find student by name
+        groupOne.findStudent("russell crowe");
+    }
+}
