@@ -1,6 +1,8 @@
-package com.company;
+package homeworks.lesson3;
 
-public class Student extends Human implements Comparable<Student> {
+import java.util.Comparator;
+
+public class Student extends Human {
 
     private String univer;
     private String group;
@@ -30,12 +32,51 @@ public class Student extends Human implements Comparable<Student> {
         this.group = group;
     }
 
-    public int compareTo(Student student) {
-        return this.getSecondName().compareTo(student.getSecondName());
-    }
-
+    public static Comparator<Student> secondNameComparator = new Comparator<Student>() {
         @Override
+        public int compare(Student o1, Student o2) {
+
+            if(o1 == null){
+                return 1;
+            }
+            if(o2 == null){
+                return -1;
+            }
+            return o1.getSecondName().compareTo(o2.getSecondName());
+        }
+    };
+
+    public static Comparator<Student> ageComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student o1, Student o2) {
+
+            if(o1 == null){
+                return 1;
+            }
+            if(o2 == null){
+               return -1;
+            }
+            return o1.getAge() - o2.getAge();
+        }
+    };
+
+    public static Comparator<Student> firstNameComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student o1, Student o2) {
+
+            if(o1 == null){
+                return 1;
+            }
+            if(o2 == null){
+                return -1;
+            }
+            return o1.getFirstName().compareTo(o2.getFirstName());
+        }
+    };
+
+    @Override
     public String toString() {
         return "Student [" + super.toString() + " univer=" + univer + ", group=" + group + "]";
     }
 }
+
