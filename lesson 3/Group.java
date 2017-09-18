@@ -1,8 +1,9 @@
-package homework.lesson4;
+package homeworks.lesson3;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
-public class Group {
+public class Group implements FindSoldiers{
 
 
     private String groupName;
@@ -21,6 +22,10 @@ public class Group {
         return groupName;
     }
 
+    public Student[] getStudentsArray() {
+        return studentsArray;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Group - " + this.groupName);
@@ -37,18 +42,16 @@ public class Group {
         return sb.toString();
     }
 
-    public void sortGroup() {
-        Arrays.sort(studentsArray);
+    public void sortBySecondName() {
+        Arrays.sort(studentsArray,Student.secondNameComparator);
     }
 
     public void sortByAge(){
         Arrays.sort(studentsArray,Student.ageComparator);
-        toString();
     }
 
-    public void sortByFirstname(){
-        Arrays.sort(studentsArray,Student.firstNameComparatot);
-        toString();
+   public void sortByFirstName(){
+        Arrays.sort(studentsArray,Student.firstNameComparator);
     }
 
     //add student to the group
@@ -90,5 +93,30 @@ public class Group {
             }
         }
         System.out.println("--ERROR: Student " + fullName + " not found in the group " + this.groupName);
+    }
+
+    // studets dynamic input
+    public void dynamicAdding() throws MyException{
+       Student dStudent = new Student();
+       Scanner input = new Scanner(System.in);
+        for (int i = 0; i < studentsArray.length; i++) {
+            if (studentsArray[i] == null) {
+                studentsArray[i] = dStudent;
+                System.out.print("Enter student's first name: ");
+                dStudent.setFirstName(input.next());
+                System.out.print("Enter student's second name: ");
+                dStudent.setSecondName(input.next());
+                System.out.print("Enter student's age: ");
+                dStudent.setAge(input.nextInt());
+                System.out.print("Enter student's sex: ");
+                dStudent.setSex(input.next());
+                System.out.print("Enter student's University: ");
+                dStudent.setUniver(input.next());
+                dStudent.setGroup(this.groupName);
+                System.out.println("--MSG: Student " + dStudent.getFullName() + " added to the group " + this.groupName);
+                return;
+            }
+        }
+        throw new MyException();
     }
 }
