@@ -1,4 +1,4 @@
-package com.company;
+package homeworks.lesson3;
 
 public class Human {
 
@@ -23,11 +23,11 @@ public class Human {
         return firstName;
     }
 
-    public String getSecondName(){
+    public String getSecondName() {
         return secondName;
     }
 
-    public String getFullName(){
+    public String getFullName() {
         return firstName + " " + secondName;
     }
 
@@ -39,11 +39,19 @@ public class Human {
         return age;
     }
 
-    public void setFirstName(){
+    public void setFirstName() {
         this.firstName = firstName;
     }
 
-    public void setSecondName(){
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+
+    public void setSecondName() {
+        this.secondName = secondName;
+    }
+
+    public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
 
@@ -51,7 +59,15 @@ public class Human {
         this.age = age;
     }
 
-    public void setSex(){
+    public void setAge() {
+        this.age = age;
+    }
+
+    public void setSex() {
+        this.sex = sex;
+    }
+
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
