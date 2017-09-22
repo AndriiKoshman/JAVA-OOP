@@ -1,5 +1,8 @@
 package homeworks.lesson3;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -38,6 +41,14 @@ public class Group implements FindSoldiers{
                 sb.append((i + 1) + ") Free");
             }
             sb.append(System.lineSeparator());
+        }
+        File file = new File("C:/Users/Public/Downloads/ReceivingFolder/Group's list.txt");
+
+        try(FileWriter fW = new FileWriter(file)) {
+            fW.write(sb.toString());
+
+        }catch (IOException e){
+            System.out.println(e.getMessage());
         }
         return sb.toString();
     }
@@ -118,5 +129,30 @@ public class Group implements FindSoldiers{
             }
         }
         throw new MyException();
+    }
+
+    public void sortByParameter() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Sort group by (1-first name, 2-last name, 3-age): ");
+        int sortBy = input.nextInt();
+       switch(sortBy) {
+
+           case 1:
+               Arrays.sort(studentsArray, (a, b) -> CheckNull.checkNull(a, b) != CheckNull.NOT_NULL ? CheckNull.checkNull(a, b)
+                       : a.getFirstName().compareTo(b.getFirstName()));
+               break;
+
+           case 2:
+               Arrays.sort(studentsArray, (a, b) -> CheckNull.checkNull(a, b) != CheckNull.NOT_NULL ? CheckNull.checkNull(a, b)
+                       : a.getSecondName().compareTo(b.getSecondName()));
+               break;
+           case 3:
+               Arrays.sort(studentsArray, (a, b) -> CheckNull.checkNull(a, b) != CheckNull.NOT_NULL ? CheckNull.checkNull(a, b)
+                       : a.getAge() - b.getAge());
+               break;
+           default:
+               break;
+
+       }
     }
 }
