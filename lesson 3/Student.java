@@ -1,5 +1,6 @@
 package homeworks.lesson3;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class Student extends Human {
@@ -79,4 +80,3 @@ public class Student extends Human {
         return "Student [" + super.toString() + " univer=" + univer + ", group=" + group + "]";
     }
 }
-
