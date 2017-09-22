@@ -62,14 +62,9 @@ public class Main {
         System.out.println();
 
         //sorting by parameters
-        groupOne.sortByAge();
+        groupOne.sortByParameter();
         System.out.println(groupOne);
 
-        groupOne.sortByFirstName();
-        System.out.println(groupOne);
-
-        groupOne.sortBySecondName();
-        System.out.println(groupOne);
 
         //find student by name
         groupOne.findStudent("russell crowe");
@@ -78,5 +73,6 @@ public class Main {
         //get adult studets
         MilitaryRecruiter mihail = new MilitaryRecruiter("Misha", 44);
         mihail.getAdults(groupOne);
+        System.out.println(groupOne);
     }
 }
