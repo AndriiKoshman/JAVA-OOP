@@ -77,6 +77,6 @@ public class Student extends Human {
 
     @Override
     public String toString() {
-        return "Student [" + super.toString() + " univer=" + univer + ", group=" + group + "]";
+        return "Student [" + super.toString() + " univer=" + "\"" +univer + "\"" + ", group=" + "\"" + group + "\"" + "]";
     }
 }
