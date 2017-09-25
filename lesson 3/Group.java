@@ -1,10 +1,11 @@
 package homeworks.lesson3;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Group implements FindSoldiers{
 
@@ -21,6 +22,10 @@ public class Group implements FindSoldiers{
         super();
     }
 
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
     public String getGroupName() {
         return groupName;
     }
@@ -31,7 +36,7 @@ public class Group implements FindSoldiers{
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Group - " + this.groupName);
+        sb.append("Group = " + "\"" + this.groupName + "\"");
         sb.append(System.lineSeparator());
 
         for (int i = 0; i < studentsArray.length; i++) {
@@ -42,7 +47,7 @@ public class Group implements FindSoldiers{
             }
             sb.append(System.lineSeparator());
         }
-        File file = new File("C:/Users/Public/Downloads/ReceivingFolder/Group's list.txt");
+        File file = new File("C:/Users/Public/Downloads/ReceivingFolder/" + this.groupName  + "'s list.txt");
 
         try(FileWriter fW = new FileWriter(file)) {
             fW.write(sb.toString());
@@ -152,6 +157,40 @@ public class Group implements FindSoldiers{
                break;
            default:
                break;
+
+       }
+    }
+
+    public static void createFromTxt(File in, Group group) throws IOException{
+       if(in != null){
+           String str = "";
+           Pattern p = Pattern.compile("\"([^\"]*)\"");
+           ArrayList<String> matches = new ArrayList<String>();
+           String match = "";
+           try(BufferedReader bR = new BufferedReader(new FileReader(in))){
+
+               for(;(str = bR.readLine()) != null;){
+                   System.out.println(str);
+                  Matcher m = p.matcher(str);
+
+                  while(m.find()){
+                          match = m.group(1);
+                          matches.add(match);
+                  }
+                  if(matches.size() < 2 && matches.size() != 0){
+                      group.setGroupName(matches.get(0) + " 2");
+                  }else if(matches.size() != 0) {
+                      group.addStudent(new Student(matches.get(0), matches.get(1), Integer.parseInt(matches.get(2)), matches.get(3), matches.get(4)));
+                  }
+
+                   matches.clear();
+               }
+
+           }catch(IOException e){
+               throw e;
+           } catch (MyException e) {
+               e.printStackTrace();
+           }
 
        }
     }
