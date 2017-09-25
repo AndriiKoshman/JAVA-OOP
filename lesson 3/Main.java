@@ -1,8 +1,11 @@
 package homeworks.lesson3;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // create 11 students and 1 group
         Student student1 = new Student("Jackie", "Chan",15, "M", "Poplavskiy University");
@@ -74,5 +77,17 @@ public class Main {
         MilitaryRecruiter mihail = new MilitaryRecruiter("Misha", 44);
         mihail.getAdults(groupOne);
         System.out.println(groupOne);
+
+       //create Group from txt file
+
+        File in = new File("C:/Users/Public/Downloads/ReceivingFolder/Group's list.txt");
+        Group groupTwo = new Group();
+
+        try {
+            Group.createFromTxt(in, groupTwo);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println(groupTwo);
     }
 }
