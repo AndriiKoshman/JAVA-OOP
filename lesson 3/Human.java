@@ -72,6 +72,6 @@ public class Human {
     }
 
     public String toString() {
-        return "First name= " + firstName + ", Second name= " + secondName + ", age= " + age + ", sex= " + sex;
+        return "First name= " + "\"" + firstName + "\"" + ", Second name= " + "\"" + secondName + "\"" + ", age= " + "\"" + age + "\"" + ", sex= " + "\"" + sex + "\"";
     }
 }
