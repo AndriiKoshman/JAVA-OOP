@@ -79,7 +79,6 @@ public class Main {
         System.out.println(groupOne);
 
        //create Group from txt file
-
         File in = new File("C:/Users/Public/Downloads/ReceivingFolder/Group's list.txt");
         Group groupTwo = new Group();
 
@@ -89,5 +88,6 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(groupTwo);
+        groupTwo.saveList();
     }
 }
