@@ -34,10 +34,10 @@ public class Main {
         //find matches in txt files
         File txt1 = new File("C:/Users/Public/Downloads/SomeTXT.txt");
         File txt2 = new File("C:/Users/Public/Downloads/anotherTXT.txt");
-        File matchedStr = new File("C:/Users/Public/Downloads/ReceivingFolder/matchesTXT.txt");
+        File matchedWords = new File("C:/Users/Public/Downloads/ReceivingFolder/matchesTXT.txt");
 
         try{
-            FileOperation.findMatches(txt1,txt2,matchedStr);
+            FileOperation.findMatches(txt1,txt2,matchedWords);
 
         } catch (IOException e){
             e.printStackTrace();
