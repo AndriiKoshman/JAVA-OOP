@@ -1,6 +1,7 @@
 package homeworks.lesson5;
 
 import java.io.*;
+import java.nio.Buffer;
 
 public class FileOperation {
 
@@ -29,24 +30,10 @@ public class FileOperation {
         if(in1 == null || in2 == null || out ==null){
             throw new IllegalArgumentException("Null file Pointer");
         }
-        String str1 = "";
-        String str2 = "";
-        String strLine1 = "";
-        String strLine2 = "";
+        
+        String [] words1 = returnWordsArr(in1);
+        String [] words2 = returnWordsArr(in2);
         String matches = "";
-
-        try(BufferedReader bR1 = new BufferedReader(new FileReader(in1)); BufferedReader bR2 = new BufferedReader(new FileReader(in2)); FileWriter fW = new FileWriter(out)){
-
-            for(;(str1 = bR1.readLine()) != null;){
-                strLine1 += str1;
-            }
-            String [] words1 = strLine1.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-            System.out.println(strLine1);
-
-            for (; (str2 = bR2.readLine()) != null; ) {
-               strLine2 += str2;
-            }
-            String[] words2 = strLine2.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
 
             for(String word1 : words1){
                 if(word1 != null) {
@@ -57,11 +44,40 @@ public class FileOperation {
                     }
                 }
             }
+            saveFile(out,matches);
+    }
+
+    public static String[] returnWordsArr(File in) throws IOException {
+        if(in == null){
+            throw new IllegalArgumentException("Null file Pointer");
+        }
+
+        String str = "";
+        String strLine = "";
+
+        try(BufferedReader bR = new BufferedReader(new FileReader(in))){
+
+            for(;(str = bR.readLine()) !=null;){
+                strLine += str;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String [] words = strLine.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        return words;
+
+    }
+
+    public static void saveFile(File out, String matches){
+
+        try(FileWriter fW = new FileWriter(out)){
 
             fW.write(matches);
 
-        }catch(IOException e){
-            throw e;
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
