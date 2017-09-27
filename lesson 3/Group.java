@@ -47,15 +47,21 @@ public class Group implements FindSoldiers{
             }
             sb.append(System.lineSeparator());
         }
+
+        return sb.toString();
+    }
+
+    public void saveList() {
+
+        String list = toString();
         File file = new File("C:/Users/Public/Downloads/ReceivingFolder/" + this.groupName  + "'s list.txt");
 
         try(FileWriter fW = new FileWriter(file)) {
-            fW.write(sb.toString());
+            fW.write(list);
 
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-        return sb.toString();
     }
 
     public void sortBySecondName() {
@@ -170,7 +176,7 @@ public class Group implements FindSoldiers{
            try(BufferedReader bR = new BufferedReader(new FileReader(in))){
 
                for(;(str = bR.readLine()) != null;){
-                   System.out.println(str);
+
                   Matcher m = p.matcher(str);
 
                   while(m.find()){
@@ -191,7 +197,6 @@ public class Group implements FindSoldiers{
            } catch (MyException e) {
                e.printStackTrace();
            }
-
        }
     }
 }
