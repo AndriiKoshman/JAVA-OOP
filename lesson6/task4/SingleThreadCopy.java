@@ -21,7 +21,7 @@ public class SingleThreadCopy implements Runnable {
         if(in == null || out == null){
             throw new IllegalArgumentException("Null file Pointer");
         }
-        System.out.println(in.getName());
+        
             try (FileInputStream fis = new FileInputStream(in); FileOutputStream fos = new FileOutputStream(out + in.getName())) {
                 byte[] buffer = new byte[1024];
                 int byteRead = 0;
