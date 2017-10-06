@@ -31,7 +31,6 @@ public class Port {
                 e.printStackTrace();
             }
             semaphore.release();
-            this.load = load;
         }
 
 
